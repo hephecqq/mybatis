@@ -1,6 +1,7 @@
 package com.entities;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -32,6 +33,12 @@ public class MybatisTest {
 			System.out.println(user);
 			System.out.println(user.getUserAddress());
 			System.out.println(user.getUserName());
+	
+			////查询结果为一个list
+			List<User> list=session.selectList("entities.selectUsers","%e%");
+			for (User user2 : list) {
+				System.out.println("& "+user2);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
